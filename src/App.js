@@ -1,24 +1,27 @@
-import logo from './logo.svg';
-import './App.css';
-
+import "./App.css";
+import Navbar from "./Navbar";
+import styled from "styled-components";
+import { Route, Routes, useNavigate } from "react-router-dom";
+import LandingPage from "./LandingPage";
+import SignUpPage from "./SignUpPage";
+import LoginPage from "./LoginPage";
+import UserDashBoard from "./UserDashBoard";
+const Container = styled.div`
+  margin-top: 50px;
+`;
 function App() {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <>
+      <Navbar />
+      <Container>
+        <Routes>
+          <Route path="/" element={<LandingPage />} />
+          <Route path="/signup" element={<SignUpPage />} />
+          <Route path="/login" element={<LoginPage />} />
+          <Route path="/user-dashboard" element={<UserDashBoard />} />
+        </Routes>
+      </Container>
+    </>
   );
 }
 
