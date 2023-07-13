@@ -30,18 +30,34 @@ const Btn = styled.span`
   color: #116cbc;
   border-radius: 7px;
   cursor: pointer;
+  margin: 0 10px;
 `;
 
 function Navbar() {
   const navigate = useNavigate();
+  const handleLOgout = () => {
+    sessionStorage.clear();
+    navigate("/");
+  };
   return (
     <>
       <Container>
         <Wrapper>
           <Logo onClick={() => navigate("/")}>EVENTEASE</Logo>
           <Right>
-            <Btn onClick={() => navigate("/login")}>Login</Btn>
-            <Btn onClick={() => navigate("/signup")}>SignUp</Btn>
+            {sessionStorage.getItem("login") ? (
+              <div>
+                {" "}
+                <Btn onClick={handleLOgout}>LogOut</Btn>
+                <Btn onClick={() => navigate("/user-dashboard")}>Dashboard</Btn>
+              </div>
+            ) : (
+              <div>
+                {" "}
+                <Btn onClick={() => navigate("/login")}>Login</Btn>
+                <Btn onClick={() => navigate("/signup")}>SignUp</Btn>
+              </div>
+            )}
           </Right>
         </Wrapper>
       </Container>

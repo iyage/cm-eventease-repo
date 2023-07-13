@@ -88,12 +88,20 @@ function LoginPage() {
       }
     );
   };
-  const { mutate, isLoading, isSuccess, isError } = useMutation(
+  const { mutate, isSuccess, isError } = useMutation(
     (variables) => signUp(variables),
     {
       onSuccess(data, variables, context) {
+        sessionStorage.setItem("login", true);
+        sessionStorage.setItem("userId", data.data.data.id);
+        sessionStorage.setItem("firstName", data.data.data.firstName);
+        sessionStorage.setItem("lastName", data.data.data.lastName);
+        sessionStorage.setItem("email", data.data.data.email);
+        sessionStorage.setItem("phoneNumber", data.data.data.phoneNumber);
+        sessionStorage.setItem("events", JSON.stringify([]));
         console.log(data);
-        navigate("/user-dashboaerd");
+
+        navigate("/user-dashboard");
       },
       onError(error) {
         console.log(error);
